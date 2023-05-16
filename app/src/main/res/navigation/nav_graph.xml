@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <!-- Экран входа -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.github.GeorgiiVoyakin.view.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+
+    <!-- Экран регистрации -->
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.github.GeorgiiVoyakin.view.RegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_mainFragment2"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+
+    <!-- Главный экран -->
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.github.GeorgiiVoyakin.view.GalleryFragment"
+        android:label="Gallery"
+        tools:layout="@layout/fragment_gallery">
+    </fragment>
+</navigation>
