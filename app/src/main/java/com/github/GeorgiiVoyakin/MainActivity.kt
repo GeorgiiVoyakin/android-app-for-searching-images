@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -19,15 +20,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
-        setSupportActionBar(topAppBar)
+//        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+//        setSupportActionBar(topAppBar)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        NavigationUI.setupActionBarWithNavController(this, navController)
+//        NavigationUI.setupActionBarWithNavController(this, navController)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+//        findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+//            .setupWithNavController(navController)
+
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility =
@@ -38,23 +42,24 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     View.VISIBLE
                 }
+            Log.d(TAG, "onCreate: navController.addOnDestinationChangedListener")
         }
 
-        topAppBar.setNavigationOnClickListener {
-            super.onSupportNavigateUp()
-            navController.navigateUp()
-        }
-
-        topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.settings_menu_item -> {
-                    Log.d(TAG, "onCreate: settings clicked")
-                    true
-                }
-
-                else -> false
-            }
-        }
+//        topAppBar.setNavigationOnClickListener {
+//            super.onSupportNavigateUp()
+//            navController.navigateUp()
+//        }
+//
+//        topAppBar.setOnMenuItemClickListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.settings_menu_item -> {
+//                    Log.d(TAG, "onCreate: settings clicked")
+//                    true
+//                }
+//
+//                else -> false
+//            }
+//        }
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
