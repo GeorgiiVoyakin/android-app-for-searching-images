@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_item1"
+        android:id="@+id/galleryFragment"
         android:enabled="true"
         android:icon="@drawable/image_icon"
         android:title="галерея" />
     <item
-        android:id="@+id/menu_item2"
+        android:id="@+id/searchFragment"
         android:enabled="true"
         android:icon="@drawable/search_icon"
         android:title="поиск" />
     <item
-        android:id="@+id/menu_item3"
+        android:id="@+id/favouritesFragment"
         android:enabled="true"
         android:icon="@drawable/star_icon"
         android:title="избранное" />
     <item
-        android:id="@+id/menu_item4"
+        android:id="@+id/albumsFragment"
         android:enabled="true"
         android:icon="@drawable/album_icon"
         android:title="альбомы" />

@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        NavigationUI.setupActionBarWithNavController(this, navController)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-//        findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-//            .setupWithNavController(navController)
+        bottomNavigationView.setupWithNavController(navController)
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -60,36 +59,6 @@ class MainActivity : AppCompatActivity() {
 //                else -> false
 //            }
 //        }
-
-        bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_item1 -> {
-                    Log.d(TAG, "onCreate: gallery nav clicked")
-                    navController.navigate(R.id.galleryFragment)
-                    true
-                }
-
-                R.id.menu_item2 -> {
-                    Log.d(TAG, "onCreate: search nav clicked")
-                    navController.navigate(R.id.searchFragment)
-                    true
-                }
-
-                R.id.menu_item3 -> {
-                    Log.d(TAG, "onCreate: fav nav clicked")
-                    navController.navigate(R.id.favouritesFragment)
-                    true
-                }
-
-                R.id.menu_item4 -> {
-                    Log.d(TAG, "onCreate: albums nav clicked")
-                    navController.navigate(R.id.albumsFragment)
-                    true
-                }
-
-                else -> false
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
