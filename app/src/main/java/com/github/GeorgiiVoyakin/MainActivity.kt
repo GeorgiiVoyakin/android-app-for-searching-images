@@ -2,11 +2,13 @@ package com.github.GeorgiiVoyakin
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,13 +22,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
-        setSupportActionBar(topAppBar)
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-//        NavigationUI.setupActionBarWithNavController(this, navController)
+
+        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.loginFragment,
+                R.id.registrationFragment,
+                R.id.settingsFragment,
+                R.id.galleryFragment,
+                R.id.searchFragment,
+                R.id.favouritesFragment,
+                R.id.albumsFragment,
+            )
+        )
+        topAppBar.setupWithNavController(navController, appBarConfiguration)
+        setSupportActionBar(topAppBar)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
@@ -35,7 +48,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility =
                 if (destination.id == R.id.loginFragment ||
-                    destination.id == R.id.registrationFragment
+                    destination.id == R.id.registrationFragment ||
+                    destination.id == R.id.settingsFragment
                 ) {
                     View.GONE
                 } else {
@@ -43,25 +57,19 @@ class MainActivity : AppCompatActivity() {
                 }
             Log.d(TAG, "onCreate: navController.addOnDestinationChangedListener")
         }
-
-//        topAppBar.setNavigationOnClickListener {
-//            super.onSupportNavigateUp()
-//            navController.navigateUp()
-//        }
-//
-//        topAppBar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.settings_menu_item -> {
-//                    Log.d(TAG, "onCreate: settings clicked")
-//                    true
-//                }
-//
-//                else -> false
-//            }
-//        }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings_menu_item -> {
+                navController.navigate(R.id.settingsFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
