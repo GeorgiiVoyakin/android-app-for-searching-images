@@ -1,6 +1,7 @@
 package com.github.GeorgiiVoyakin.network
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -29,8 +30,8 @@ interface FastAPI {
 //        @Query("limit") limit: Int = 100
 //    ): Call<Response_Read_Users_Users_Get>
 
-//    @POST("/users/")
-//    fun createUser(@Body userCreate: UserCreate): Call<User>
+    @POST("/users/")
+    fun createUser(@Body userCreate: UserCreate): Call<User>
 //
 //    @GET("/users/{user_id}")
 //    fun readUser(@Path("user_id") userId: Int): Call<User>
