@@ -1,14 +1,11 @@
 package com.github.GeorgiiVoyakin.network
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface FastAPI {
     @FormUrlEncoded
@@ -20,9 +17,9 @@ interface FastAPI {
         password: String
     ): Call<Token>
 
-//    @GET("/users/me")
-//    fun readUsersMe(): Call<User>
-//
+    @GET("/users/me")
+    fun readUsersMe(@Header("Authorization") accessToken: String): Call<User>
+
 //    @GET("/users/me/images/")
 //    fun readOwnImages(): Call<List<Image>>
 
