@@ -88,11 +88,6 @@ class LoginFragment : Fragment() {
         })
     }
 
-    private fun isLoggedIn(): Boolean {
-        sharedPreferences.getString("access_token", null) ?: false
-        return false
-    }
-
     private fun performLogin() {
         val call = api.loginForAccessToken(
             binding.login.text.toString(),
